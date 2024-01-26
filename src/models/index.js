@@ -9,19 +9,19 @@ const User = require("./User");
 Category.hasMany(Product);
 Product.belongsTo(Category);
 
-Image.hasMany(Product);
-Product.belongsTo(Image);
+Product.hasMany(Image);
+Image.belongsTo(Product);
 
 
-ProductCart.hasMany(User);
-User.belongsTo(ProductCart);
+ProductCart.belongsTo(User);
+User.hasMany(ProductCart);
 
-ProductCart.hasMany(Product);
-Product.belongsTo(ProductCart);
+ProductCart.belongsTo(Product);
+Product.hasMany(ProductCart);
 
 
-Purchase.hasMany(User);
-User.belongsTo(Purchase);
+Purchase.belongsTo(User);
+User.hasMany(Purchase);
 
-Purchase.hasMany(Product);
-Product.belongsTo(Purchase);
+Purchase.belongsTo(Product);
+Product.hasMany(Purchase);

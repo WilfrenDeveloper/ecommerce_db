@@ -13,7 +13,7 @@ test('POST /users debe crear un usuario', async () => {
         phone: "3212041857"
     }
     const res = await request(app).post('/users').send(user);
-    id =  res.body.id
+    id =  res.body.id;
     expect(res.status).toBe(201);
     expect(res.body.firstName).toBe(user.firstName);
     expect(res.body.id).toBeDefined();

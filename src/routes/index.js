@@ -12,7 +12,7 @@ router.use('/users', userRouter);
 router.use('/categories', categoryRouter);
 router.use('/products', productRouter);
 router.use('/images', imageRouter);
-router.use('/productCarts', productCartRouter);
+router.use('/cart', productCartRouter);
 router.use('/purchases', purchaseRouter);
 
 

@@ -1,13 +1,22 @@
 const catchError = require('../utils/catchError');
 const ProductCart = require('../models/ProductCart');
+const Product = require('../models/Product');
 
 const getAll = catchError(async(req, res) => {
-    const results = await ProductCart.findAll();
+    const results = await ProductCart.findAll({
+        include: [Product],
+        where: {userId : req.user.id}
+    });
     return res.json(results);
 });
 
 const create = catchError(async(req, res) => {
-    const result = await ProductCart.create(req.body);
+    const { productId, quantity } = req.body;
+    const result = await ProductCart.create({
+        userId: req.user.id,
+        productId,
+        quantity
+    });
     return res.status(201).json(result);
 });
 
