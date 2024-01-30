@@ -2,10 +2,14 @@ const catchError = require('../utils/catchError');
 const Purchase = require('../models/Purchase');
 const Product = require('../models/Product');
 const ProductCart = require('../models/ProductCart');
+const Image = require('../models/Image');
 
 const getAll = catchError(async(req, res) => {
     const purchases = await Purchase.findAll({
-        include: [Product],
+        include: [{
+            model: Product,
+            include: [Image]
+        }],
         where: { userId: req.user.id }
     });
     return res.json(purchases);
@@ -29,14 +33,8 @@ const create = catchError(async(req, res) => {
     return res.status(201).json({message: "purchases successful"});
 });
 
-const remove = catchError(async (req, res) => {
-    const { id } = req.params;
-    await Purchase.destroy({where: {id}})
-    return res.sendStatus(204)
-});
 
 module.exports = {
     getAll,
     create,
-    remove
 }
